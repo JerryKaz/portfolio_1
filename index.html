@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jerry Myron | Full-Stack Developer</title>
+    <link rel="stylesheet" href="portfolio.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Source+Code+Pro:wght@300;400;500&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💼</text></svg>">
+</head>
+<body>
+    <!-- Background Elements -->
+    <div class="bg-grid"></div>
+    
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="#home" class="logo">
+                    <span class="logo-text"> My Portfolio  </span>
+                    <span class="logo-dot">.📃</span>
+                </a>
+                
+                <div class="nav-right">
+                    <ul class="nav-menu">
+                        <li><a href="#home" class="nav-link active">Home</a></li>
+                        <li><a href="#about" class="nav-link">About</a></li>
+                        <li><a href="#skills" class="nav-link">Skills</a></li>
+                        <li><a href="#projects" class="nav-link">Projects</a></li>
+                        <li><a href="#certifications" class="nav-link">Certifications</a></li>
+                        <li><a href="#java-demo" class="nav-link">Java Demo</a></li>
+                        <li><a href="#contact" class="nav-link">Contact</a></li>
+                    </ul>
+                    
+                    <div class="nav-actions">
+                        <!-- Theme Toggle -->
+                        <div class="theme-switch-wrapper">
+                            <input type="checkbox" id="theme-toggle" class="theme-checkbox">
+                            <label for="theme-toggle" class="theme-label">
+                                <i class="fas fa-sun"></i>
+                                <i class="fas fa-moon"></i>
+                                <div class="toggle-ball"></div>
+                            </label>
+                        </div>
+                        
+                        <!-- Mobile Menu Toggle -->
+                        <button class="nav-btn" id="hamburger">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </button>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <div class="hero-badge">
+                            <span class="badge-text"> </span>
+                        </div>
+                        <h1 class="hero-title">
+                            <span class="title-line">Jerry Myron</span>
+                            <span class="title-line highlight">Full-Stack Developer</span>
+                        </h1>
+                        <p class="hero-subtitle">
+                            Building robust web applications with clean architecture and practical solutions. 
+                            Passionate about backend systems, database design, and creating maintainable code.
+                        </p>
+                        <div class="hero-buttons">
+                            <a href="#projects" class="btn btn-primary">
+                                <span class="btn-text">View Projects</span>
+                                <i class="fas fa-arrow-right btn-icon"></i>
+                            </a>
+                            <a href="#contact" class="btn btn-secondary">
+                                <span class="btn-text">Contact Me</span>
+                                <i class="fas fa-paper-plane btn-icon"></i>
+                            </a>
+                        </div>
+                        <div class="hero-stats">
+                            <div class="stat">
+                                <div class="stat-number" data-count="15">0</div>
+                                <div class="stat-label">Projects Completed</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number" data-count="5">0</div>
+                                <div class="stat-label">Tech Stacks</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number" data-count="65">0</div>
+                                <div class="stat-label">Hands on Experience</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="hero-image">
+                        <div class="image-container">
+                            
+                            <!-- Insert your picture here -->
+                            <div class="profile-image-wrapper">
+                                <img src="image/WhatsApp Image 2025-12-06 at 2.47.24 PM.jpeg" 
+                                     alt="Jerry Myron" 
+                                     class="profile-image" 
+                                     id="profile-pic">
+                                <div class="image-overlay"></div>
+                            </div>
+
+                            
+                            <div class="tech-badges">
+                                <div class="tech-badge" data-tooltip="HTML5">
+                                    <i class="fab fa-html5"></i>
+                                </div>
+                                <div class="tech-badge" data-tooltip="JavaScript">
+                                    <i class="fab fa-js-square"></i>
+                                </div>
+                                <div class="tech-badge" data-tooltip="PHP">
+                                    <i class="fab fa-php"></i>
+                                </div>
+                                <div class="tech-badge" data-tooltip="Java">
+                                    <i class="fab fa-java"></i>
+                                </div>
+                                <div class="tech-badge" data-tooltip="PostgreSQL">
+                                    <i class="fas fa-database"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">About Me</h2>
+                    <p class="section-subtitle">Passionate developer focused on practical solutions</p>
+                </div>
+                
+                <div class="about-content">
+                    <div class="about-card card">
+                        <div class="about-intro">
+                            <h3>My Development Journey</h3>
+                            <p>I'm a dedicated BSc Information Technology student at the University of Professional Studies, Accra (UPSA), with a strong focus on building practical, real-world applications.</p>
+                            <p>My approach combines theoretical knowledge with hands-on experience, emphasizing clean code, proper architecture, and database optimization.</p>
+                            
+                            <div class="education-info">
+                                <h4><i class="fas fa-graduation-cap"></i> Education</h4>
+                                <div class="education-details">
+                                    <h5>BSc Information Technology</h5>
+                                    <p class="institution">University of Professional Studies, Accra (UPSA)</p>
+                                    <div class="education-focus">
+                                        <span class="focus-tag">Backend Development</span>
+                                        <span class="focus-tag">Database Systems</span>
+                                        <span class="focus-tag">Web Architecture</span>
+                                        <span class="focus-tag">Software Engineering</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="about-details">
+                        <div class="detail-card card">
+                            <h3><i class="fas fa-cogs"></i> Development Philosophy</h3>
+                            <ul class="philosophy-list">
+                                <li>
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>Clean, maintainable code is essential for scalability</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>Database design is the foundation of every application</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>Learning through building beats following tutorials</span>
+                                </li>
+                                <li>
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>Version control and documentation are non-negotiable</span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="detail-card card">
+                            <h3><i class="fas fa-bullseye"></i> Current Focus</h3>
+                            <div class="focus-items">
+                                <div class="focus-item">
+                                    <i class="fab fa-java"></i>
+                                    <div>
+                                        <h4>Java Mastery</h4>
+                                        <p>Advanced concepts & technical interviews</p>
+                                    </div>
+                                </div>
+                                <div class="focus-item">
+                                    <i class="fas fa-server"></i>
+                                    <div>
+                                        <h4>Backend Systems</h4>
+                                        <p>Architecture design & optimization</p>
+                                    </div>
+                                </div>
+                                <div class="focus-item">
+                                    <i class="fas fa-code"></i>
+                                    <div>
+                                        <h4>Clean Code</h4>
+                                        <p>Best practices & maintainability</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="skills">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Technical Skills</h2>
+                    <p class="section-subtitle">Technologies and tools I work with</p>
+                </div>
+                
+                <div class="skills-grid">
+                    <div class="skill-category card">
+                        <div class="category-header">
+                            <i class="fas fa-code category-icon"></i>
+                            <h3>Frontend Development</h3>
+                        </div>
+                        <div class="skill-list">
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span class="skill-name">HTML5</span>
+                                    <span class="skill-percent">95%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-width="95"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span class="skill-name">CSS3</span>
+                                    <span class="skill-percent">90%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-width="90"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span class="skill-name">JavaScript</span>
+                                    <span class="skill-percent">85%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-width="85"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category card">
+                        <div class="category-header">
+                            <i class="fas fa-server category-icon"></i>
+                            <h3>Backend Development</h3>
+                        </div>
+                        <div class="skill-list">
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span class="skill-name">PHP</span>
+                                    <span class="skill-percent">80%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-width="80"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span class="skill-name">Java</span>
+                                    <span class="skill-percent">75%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-width="75"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span class="skill-name">Node.js</span>
+                                    <span class="skill-percent">60%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-width="60"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category card">
+                        <div class="category-header">
+                            <i class="fas fa-database category-icon"></i>
+                            <h3>Databases & Tools</h3>
+                        </div>
+                        <div class="skill-list">
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span class="skill-name">PostgreSQL</span>
+                                    <span class="skill-percent">85%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-width="85"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span class="skill-name">Git / GitHub</span>
+                                    <span class="skill-percent">88%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-width="88"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span class="skill-name">SQL</span>
+                                    <span class="skill-percent">90%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-width="90"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category card">
+                        <div class="category-header">
+                            <i class="fas fa-tools category-icon"></i>
+                            <h3>Other Skills</h3>
+                        </div>
+                        <div class="skill-list">
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span class="skill-name">Windows Setup</span>
+                                    <span class="skill-percent">95%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-width="95"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span class="skill-name">Software Deployment</span>
+                                    <span class="skill-percent">90%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-width="90"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span class="skill-name">Basic Networking</span>
+                                    <span class="skill-percent">70%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-width="70"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="projects">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Featured Projects</h2>
+                    <p class="section-subtitle">Practical applications and solutions</p>
+                </div>
+                
+                <div class="projects-grid">
+                    <div class="project-card card">
+                        <div class="project-image">
+                            <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="E-commerce Platform">
+                            <div class="project-overlay">
+                                <span class="project-badge">Full-Stack</span>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h3>E-Commerce Platform</h3>
+                            <p>A complete online shopping solution with product management, user authentication, cart system, and payment integration.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">PHP</span>
+                                <span class="tech-tag">JavaScript</span>
+                                <span class="tech-tag">PostgreSQL</span>
+                                <span class="tech-tag">HTML/CSS</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="project-link">
+                                    <i class="fab fa-github"></i>
+                                    <span>View Code</span>
+                                </a>
+                                <a href="#" class="project-link">
+                                    <i class="fas fa-external-link-alt"></i>
+                                    <span>Live Demo</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card card">
+                        <div class="project-image">
+                            <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="WhatsApp Integration">
+                            <div class="project-overlay">
+                                <span class="project-badge">Frontend  </span>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h3>WhatsApp Business Integration</h3>
+                            <p>Landing page with direct WhatsApp integration for customer queries. Features form validation and responsive design.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">HTML5</span>
+                                <span class="tech-tag">CSS3</span>
+                                <span class="tech-tag">JavaScript</span>
+                                <span class="tech-tag">API Integration</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="project-link">
+                                    <i class="fab fa-github"></i>
+                                    <span>View Code</span>
+                                </a>
+                                <a href="#" class="project-link">
+                                    <i class="fas fa-external-link-alt"></i>
+                                    <span>Live Demo</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card card">
+                        <div class="project-image">
+                            <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Database Manager">
+                            <div class="project-overlay">
+                                <span class="project-badge">Backend</span>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h3>Database Management System</h3>
+                            <p>Java-based application for database visualization and management with PostgreSQL backend and Swing GUI.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Java</span>
+                                <span class="tech-tag">PostgreSQL</span>
+                                <span class="tech-tag">Swing</span>
+                                <span class="tech-tag">SQL</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="project-link">
+                                    <i class="fab fa-github"></i>
+                                    <span>View Code</span>
+                                </a>
+                                <a href="#" class="project-link">
+                                    <i class="fas fa-play-circle"></i>
+                                    <span>Watch Demo</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certifications Section -->
+        <section id="certifications" class="certifications">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Certifications</h2>
+                    <p class="section-subtitle">Professional credentials and achievements</p>
+                </div>
+                
+
+
+
+                <div class="certifications-content">
+                    <div class="certifications-upload card">
+                        <h3> Certifications</h3>
+                        <p>Professional certificatify courses at UPSA.</p>
+                         <ul>
+                                
+                                <li>Programming Fundamentals ( C++ ).</li>
+                                <li>Computer Application in Business.</li>
+                                 <li>Web Development I (HTML5, CSS3, JavaScript).</li>
+                                <li>Information Systems.</li>
+                                 <li>Data Communication and Computer Networking.</li>
+                                <li>Web Development II (Severs, PHP, JavaScript).</li>
+                                 <li>Database Management Systems (PostgreSQL and SQL).</li>
+                                <li>Programming (Java).</li>
+                                 <li>Information Security Systems.</li>
+                                <li>Electronic Business.</li>
+                                 <li>Computer Hardware Systems.</li>
+                                <li>Research Methodology in IT.</li>
+                            </ul>
+                           
+
+
+
+                        </div>
+                    </div>
+                    
+                    <div class="certifications-list card">
+                    </br>
+
+     
+                            
+                            <h4>Technologies Used:</h4>
+                            <div class="tech-stack">
+                                <span class="tech-stack-item">Java</span>
+                                <span class="tech-stack-item">PostgreSQL</span>
+                                <span class="tech-stack-item">Swing GUI</span>
+                                <span class="tech-stack-item">JDBC</span>
+                                <span class="tech-stack-item">JSON Processing</span>
+                            </div>
+                            
+                            <h4>Learning Outcomes:</h4>
+                            <p>This project solidified my understanding of object-oriented programming principles, database connectivity, GUI development, and software architecture patterns.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Contact Me</h2>
+                    <p class="section-subtitle">Let's connect and build something amazing together</p>
+                </div>
+                
+                <div class="contact-content">
+                    <div class="contact-info card">
+                        <h3>Get In Touch</h3>
+                        <p>I'm open to internship opportunities, collaborative projects, and technical discussions about backend systems and database design.</p>
+                        
+                        <div class="contact-details">
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div class="contact-text">
+                                    <h4>Location</h4>
+                                    <p>Accra, Ghana</p>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div class="contact-text">
+                                    <h4>Phone</h4>
+                                    <p>+233 59 844 6269</p>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="contact-text">
+                                    <h4>Email</h4>
+                                    <p>jerrymyron24@gmail.com</p>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fab fa-whatsapp"></i>
+                                </div>
+                                <div class="contact-text">
+                                    <h4>WhatsApp</h4>
+                                    <p>+233 59 844 6269</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="social-links">
+                            <h4>Connect With Me</h4>
+                            <div class="social-icons">
+                                <a href="https://wa.me/233598446269" target="_blank" class="social-icon whatsapp">
+                                    <i class="fab fa-whatsapp"></i>
+                                </a>
+                                <a href="https://instagram.com/jerrykaz_" target="_blank" class="social-icon instagram">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="https://linkedin.com" target="_blank" class="social-icon linkedin">
+                                    <i class="fab fa-linkedin"></i>
+                                </a>
+                                <a href="https://github.com" target="_blank" class="social-icon github">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <a href="mailto:jerrymyron24@gmail.com" class="social-icon email">
+                                    <i class="fas fa-envelope"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-form-container card">
+                        <h3>Send a Message</h3>
+                        <form id="contactForm" class="contact-form">
+                            <div class="form-group">
+                                <label for="name">Your Name</label>
+                                <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Your Email</label>
+                                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="subject">Subject</label>
+                                <input type="text" id="subject" name="subject" placeholder="Enter subject" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="message">Your Message</label>
+                                <textarea id="message" name="message" placeholder="Enter your message" rows="5" required></textarea>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary">
+                                <span class="btn-text">Send Message</span>
+                                <i class="fas fa-paper-plane btn-icon"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <a href="#home" class="logo footer-logo">
+                        <span class="logo-text">Jerry Myron</span>
+                        <span class="logo-dot">.</span>
+                    </a>
+                    <p class="footer-tagline">Building practical solutions with clean, maintainable code.</p>
+                    <div class="footer-social">
+                        <a href="https://wa.me/233598446269" target="_blank" class="social-link">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="https://instagram.com/jerrykaz_" target="_blank" class="social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/jerry-myron-80a65a37a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app " target="_blank" class="social-link">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://github.com/JerryKaz" target="_blank" class="social-link">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#skills">Skills</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="#certifications">Certifications</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Web Development</a></li>
+                        <li><a href="#">Backend Development</a></li>
+                        <li><a href="#">Database Design</a></li>
+                        <li><a href="#">Java Applications</a></li>
+                        <li><a href="#">Software Setup</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Contact Info</h4>
+                    <ul class="footer-contact">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Accra, Ghana</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>+233 59 844 6269</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>jerrymyron24@gmail.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Jerry Myron. All rights reserved.</p>
+                <p>BSc Information Technology Student @ UPSA</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <script src="portfolio.js"></script>
+</body>
+</html>
