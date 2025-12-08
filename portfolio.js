@@ -836,3 +836,41 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
+
+// Add this to the end of your JavaScript file, right before the last });
+
+// Mobile-specific fixes
+function applyMobileFixes() {
+    if (window.innerWidth <= 768) {
+        // Adjust container padding
+        const containers = document.querySelectorAll('.container');
+        containers.forEach(container => {
+            container.style.paddingLeft = '15px';
+            container.style.paddingRight = '15px';
+        });
+        
+        // Adjust font sizes for better readability
+        document.documentElement.style.fontSize = '14px';
+        
+        // Fix for iOS viewport height
+        const setVh = () => {
+            const vh = window.innerHeight * 0.01;
+            document.documentElement.style.setProperty('--vh', `${vh}px`);
+        };
+        setVh();
+        window.addEventListener('resize', setVh);
+        
+        // Prevent zoom on input focus
+        const inputs = document.querySelectorAll('input, textarea, select');
+        inputs.forEach(input => {
+            input.style.fontSize = '16px';
+        });
+    }
+}
+
+// Run on load and resize
+applyMobileFixes();
+window.addEventListener('resize', applyMobileFixes);
+window.addEventListener('orientationchange', applyMobileFixes);
+
