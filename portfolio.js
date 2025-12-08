@@ -1,20 +1,62 @@
 // portfolio.js - Professional Portfolio Script
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize theme from localStorage or default to dark
-    const savedTheme = localStorage.getItem('portfolio-theme') || 'dark';
-    document.documentElement.setAttribute('data-theme', savedTheme);
-    const themeToggle = document.getElementById('theme-toggle');
-    if (themeToggle) {
-        themeToggle.checked = savedTheme === 'light';
-    }
-    
-    // Theme Toggle Functionality
-    if (themeToggle) {
-        themeToggle.addEventListener('change', function() {
-            const newTheme = this.checked ? 'light' : 'dark';
-            document.documentElement.setAttribute('data-theme', newTheme);
-            localStorage.setItem('portfolio-theme', newTheme);
+    // Theme Manager Class
+    class ThemeManager {
+        constructor() {
+            this.themeToggle = document.getElementById('theme-toggle');
+            this.systemPreference = window.matchMedia('(prefers-color-scheme: light)');
+            this.init();
+        }
+        
+        init() {
+            // Get saved theme or detect system preference
+            const savedTheme = localStorage.getItem('portfolio-theme');
+            const systemTheme = this.systemPreference.matches ? 'light' : 'dark';
+            const initialTheme = savedTheme || 'system';
+            
+            // Set initial theme
+            this.setTheme(initialTheme);
+            
+            // Update toggle state
+            if (this.themeToggle) {
+                if (initialTheme === 'system') {
+                    this.themeToggle.checked = systemTheme === 'light';
+                } else {
+                    this.themeToggle.checked = initialTheme === 'light';
+                }
+            }
+            
+            // Listen for system preference changes
+            this.systemPreference.addEventListener('change', (e) => {
+                if (localStorage.getItem('portfolio-theme') === 'system') {
+                    const newTheme = e.matches ? 'light' : 'dark';
+                    this.applyTheme(newTheme);
+                    this.updateToggleState('system');
+                }
+            });
+            
+            // Setup toggle listener
+            this.setupToggle();
+        }
+        
+        setTheme(theme) {
+            localStorage.setItem('portfolio-theme', theme);
+            
+            let appliedTheme;
+            if (theme === 'system') {
+                appliedTheme = this.systemPreference.matches ? 'light' : 'dark';
+            } else {
+                appliedTheme = theme;
+            }
+            
+            this.applyTheme(appliedTheme);
+            this.updateToggleState(theme);
+            this.updateThemeIndicator(theme);
+        }
+        
+        applyTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
             
             // Add transition class for smooth theme change
             document.body.classList.add('theme-transition');
@@ -23,54 +65,183 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 500);
             
             // Update badge colors based on theme
-            updateBadgeColors(newTheme);
-        });
+            updateBadgeColors(theme);
+            
+            // Dispatch custom event for other components
+            document.dispatchEvent(new CustomEvent('themeChanged', { detail: theme }));
+        }
+        
+        updateToggleState(theme) {
+            if (!this.themeToggle) return;
+            
+            if (theme === 'system') {
+                const systemTheme = this.systemPreference.matches ? 'light' : 'dark';
+                this.themeToggle.checked = systemTheme === 'light';
+            } else {
+                this.themeToggle.checked = theme === 'light';
+            }
+        }
+        
+        updateThemeIndicator(theme) {
+            // Update theme indicator text if exists
+            const themeIndicator = document.getElementById('theme-indicator');
+            if (themeIndicator) {
+                let text = '';
+                switch(theme) {
+                    case 'light': text = 'Light Mode'; break;
+                    case 'dark': text = 'Dark Mode'; break;
+                    case 'system': text = 'Auto (System)'; break;
+                }
+                themeIndicator.textContent = text;
+            }
+        }
+        
+        setupToggle() {
+            if (!this.themeToggle) return;
+            
+            // Create cycle toggle (light -> dark -> system -> light)
+            this.themeToggle.addEventListener('change', () => {
+                const currentTheme = localStorage.getItem('portfolio-theme') || 'system';
+                let nextTheme;
+                
+                if (currentTheme === 'system') {
+                    nextTheme = this.themeToggle.checked ? 'light' : 'dark';
+                } else if (currentTheme === 'light') {
+                    nextTheme = 'dark';
+                } else {
+                    nextTheme = 'system';
+                }
+                
+                this.setTheme(nextTheme);
+            });
+            
+            // Add right-click/double-click to toggle through all options
+            this.themeToggle.addEventListener('dblclick', (e) => {
+                e.preventDefault();
+                const currentTheme = localStorage.getItem('portfolio-theme') || 'system';
+                let nextTheme;
+                
+                switch(currentTheme) {
+                    case 'light': nextTheme = 'dark'; break;
+                    case 'dark': nextTheme = 'system'; break;
+                    case 'system': nextTheme = 'light'; break;
+                    default: nextTheme = 'light';
+                }
+                
+                this.setTheme(nextTheme);
+            });
+        }
+        
+        getCurrentTheme() {
+            const saved = localStorage.getItem('portfolio-theme') || 'system';
+            if (saved === 'system') {
+                return this.systemPreference.matches ? 'light' : 'dark';
+            }
+            return saved;
+        }
     }
     
-    // Update badge colors based on theme
+    // Initialize Theme Manager
+    const themeManager = new ThemeManager();
+    
+    // Enhanced badge color update function
     function updateBadgeColors(theme) {
         const techBadges = document.querySelectorAll('.tech-badge');
         techBadges.forEach(badge => {
             const tooltip = badge.getAttribute('data-tooltip');
             if (tooltip) {
-                switch(tooltip) {
-                    case 'SIN':
-                        badge.style.background = theme === 'light' 
-                            ? 'linear-gradient(135deg, #2563eb, #7c3aed)' 
-                            : 'linear-gradient(135deg, #3b82f6, #8b5cf6)';
-                        badge.style.color = 'white';
-                        break;
-                    case '12.1 George 3':
-                        badge.style.background = theme === 'light' 
-                            ? 'rgba(255, 255, 255, 0.8)' 
-                            : 'rgba(30, 41, 59, 0.8)';
-                        badge.style.color = theme === 'light' ? '#2563eb' : '#3b82f6';
-                        break;
-                    case '5':
-                        badge.style.background = theme === 'light' 
-                            ? 'linear-gradient(135deg, #06b6d4, #3b82f6)' 
-                            : 'linear-gradient(135deg, #22d3ee, #3b82f6)';
-                        badge.style.color = 'white';
-                        break;
-                    case 'php':
-                        badge.style.background = theme === 'light' 
-                            ? 'rgba(255, 255, 255, 0.8)' 
-                            : 'rgba(30, 41, 59, 0.8)';
-                        badge.style.color = theme === 'light' ? '#7c3aed' : '#8b5cf6';
-                        break;
-                    case 'JS':
-                        badge.style.background = theme === 'light' 
-                            ? 'rgba(255, 255, 255, 0.8)' 
-                            : 'rgba(30, 41, 59, 0.8)';
-                        badge.style.color = theme === 'light' ? '#f59e0b' : '#fbbf24';
-                        break;
-                }
+                const colorScheme = getBadgeColorScheme(tooltip, theme);
+                badge.style.background = colorScheme.background;
+                badge.style.color = colorScheme.color;
+                badge.style.boxShadow = colorScheme.shadow;
+                badge.style.border = colorScheme.border;
             }
         });
     }
     
+    function getBadgeColorScheme(tooltip, theme) {
+        const isLight = theme === 'light';
+        
+        switch(tooltip) {
+            case 'SIN':
+                return {
+                    background: isLight 
+                        ? 'linear-gradient(135deg, #2563eb, #7c3aed)' 
+                        : 'linear-gradient(135deg, #3b82f6, #8b5cf6)',
+                    color: 'white',
+                    shadow: isLight 
+                        ? '0 4px 15px rgba(37, 99, 235, 0.3)' 
+                        : '0 4px 15px rgba(59, 130, 246, 0.3)',
+                    border: 'none'
+                };
+            case '12.1 George 3':
+                return {
+                    background: isLight 
+                        ? 'rgba(255, 255, 255, 0.9)' 
+                        : 'rgba(30, 41, 59, 0.9)',
+                    color: isLight ? '#2563eb' : '#3b82f6',
+                    shadow: isLight 
+                        ? '0 2px 8px rgba(0, 0, 0, 0.1)' 
+                        : '0 2px 8px rgba(0, 0, 0, 0.3)',
+                    border: isLight 
+                        ? '1px solid rgba(37, 99, 235, 0.2)' 
+                        : '1px solid rgba(59, 130, 246, 0.3)'
+                };
+            case '5':
+                return {
+                    background: isLight 
+                        ? 'linear-gradient(135deg, #06b6d4, #3b82f6)' 
+                        : 'linear-gradient(135deg, #22d3ee, #3b82f6)',
+                    color: 'white',
+                    shadow: isLight 
+                        ? '0 4px 15px rgba(6, 182, 212, 0.3)' 
+                        : '0 4px 15px rgba(34, 211, 238, 0.3)',
+                    border: 'none'
+                };
+            case 'php':
+                return {
+                    background: isLight 
+                        ? 'rgba(255, 255, 255, 0.9)' 
+                        : 'rgba(30, 41, 59, 0.9)',
+                    color: isLight ? '#7c3aed' : '#8b5cf6',
+                    shadow: isLight 
+                        ? '0 2px 8px rgba(0, 0, 0, 0.1)' 
+                        : '0 2px 8px rgba(0, 0, 0, 0.3)',
+                    border: isLight 
+                        ? '1px solid rgba(124, 58, 237, 0.2)' 
+                        : '1px solid rgba(139, 92, 246, 0.3)'
+                };
+            case 'JS':
+                return {
+                    background: isLight 
+                        ? 'rgba(255, 255, 255, 0.9)' 
+                        : 'rgba(30, 41, 59, 0.9)',
+                    color: isLight ? '#f59e0b' : '#fbbf24',
+                    shadow: isLight 
+                        ? '0 2px 8px rgba(0, 0, 0, 0.1)' 
+                        : '0 2px 8px rgba(0, 0, 0, 0.3)',
+                    border: isLight 
+                        ? '1px solid rgba(245, 158, 11, 0.2)' 
+                        : '1px solid rgba(251, 191, 36, 0.3)'
+                };
+            default:
+                return {
+                    background: isLight 
+                        ? 'rgba(255, 255, 255, 0.9)' 
+                        : 'rgba(30, 41, 59, 0.9)',
+                    color: isLight ? '#4b5563' : '#cbd5e1',
+                    shadow: isLight 
+                        ? '0 2px 8px rgba(0, 0, 0, 0.1)' 
+                        : '0 2px 8px rgba(0, 0, 0, 0.3)',
+                    border: isLight 
+                        ? '1px solid rgba(0, 0, 0, 0.1)' 
+                        : '1px solid rgba(255, 255, 255, 0.1)'
+                };
+        }
+    }
+    
     // Initialize badge colors
-    updateBadgeColors(savedTheme);
+    updateBadgeColors(themeManager.getCurrentTheme());
     
     // Mobile Navigation Toggle
     const hamburger = document.getElementById('hamburger');
@@ -472,34 +643,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 submitBtn.innerHTML = originalText;
                 submitBtn.disabled = false;
             }, 1500);
-            
-            // In a real application, you would use fetch:
-            /*
-            fetch('/api/contact', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ name, email, subject, message })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    showNotification('Message sent successfully!', 'success');
-                    contactForm.reset();
-                } else {
-                    showNotification('Failed to send message. Please try again.', 'error');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                showNotification('Network error. Please try again.', 'error');
-            })
-            .finally(() => {
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-            });
-            */
         });
     }
     
@@ -565,7 +708,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Notification System
+    // Enhanced Notification System
     function showNotification(message, type) {
         // Remove any existing notification
         const existingNotification = document.querySelector('.notification');
@@ -586,22 +729,41 @@ document.addEventListener('DOMContentLoaded', function() {
         notification.innerHTML = `
             <i class="fas fa-${icon}"></i>
             <span>${message}</span>
+            <button class="notification-close" aria-label="Close notification">
+                <i class="fas fa-times"></i>
+            </button>
         `;
         
         // Add to document
         document.body.appendChild(notification);
         
-        // Remove after 5 seconds
-        setTimeout(() => {
+        // Close button functionality
+        const closeBtn = notification.querySelector('.notification-close');
+        closeBtn.addEventListener('click', () => {
             notification.style.animation = 'slideOut 0.3s ease-out forwards';
-            
-            setTimeout(() => {
-                notification.remove();
-            }, 300);
+            setTimeout(() => notification.remove(), 300);
+        });
+        
+        // Remove after 5 seconds
+        const autoRemove = setTimeout(() => {
+            notification.style.animation = 'slideOut 0.3s ease-out forwards';
+            setTimeout(() => notification.remove(), 300);
         }, 5000);
+        
+        // Keep notification on hover
+        notification.addEventListener('mouseenter', () => {
+            clearTimeout(autoRemove);
+        });
+        
+        notification.addEventListener('mouseleave', () => {
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease-out forwards';
+                setTimeout(() => notification.remove(), 300);
+            }, 2000);
+        });
     }
     
-    // Add animations to CSS
+    // Add theme-specific animations to CSS
     const animationStyles = document.createElement('style');
     animationStyles.textContent = `
         @keyframes fadeIn {
@@ -678,7 +840,7 @@ document.addEventListener('DOMContentLoaded', function() {
             top: 100px;
             right: 20px;
             padding: 15px 25px;
-            border-radius: 8px;
+            border-radius: 12px;
             color: white;
             font-weight: 500;
             z-index: 10000;
@@ -688,23 +850,47 @@ document.addEventListener('DOMContentLoaded', function() {
             font-family: 'Inter', sans-serif;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             backdrop-filter: blur(10px);
+            border: 1px solid;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+        
+        .notification:hover {
+            transform: translateX(-5px);
         }
         
         .notification.success {
-            background: linear-gradient(135deg, rgba(16, 185, 129, 0.9), rgba(5, 150, 105, 0.9));
-            border: 1px solid rgba(16, 185, 129, 0.3);
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.95), rgba(5, 150, 105, 0.95));
+            border-color: rgba(16, 185, 129, 0.3);
         }
         
         .notification.error {
-            background: linear-gradient(135deg, rgba(239, 68, 68, 0.9), rgba(220, 38, 38, 0.9));
-            border: 1px solid rgba(239, 68, 68, 0.3);
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.95), rgba(220, 38, 38, 0.95));
+            border-color: rgba(239, 68, 68, 0.3);
         }
         
         .notification.info {
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.9), rgba(37, 99, 235, 0.9));
-            border: 1px solid rgba(59, 130, 246, 0.3);
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.95), rgba(37, 99, 235, 0.95));
+            border-color: rgba(59, 130, 246, 0.3);
+        }
+        
+        .notification-close {
+            margin-left: auto;
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            opacity: 0.8;
+            padding: 5px;
+            border-radius: 4px;
+            transition: opacity 0.2s ease, background 0.2s ease;
+        }
+        
+        .notification-close:hover {
+            opacity: 1;
+            background: rgba(255, 255, 255, 0.1);
         }
         
         @keyframes slideIn {
@@ -721,7 +907,17 @@ document.addEventListener('DOMContentLoaded', function() {
             transition: background-color 0.5s ease, 
                        color 0.5s ease, 
                        border-color 0.5s ease,
-                       box-shadow 0.5s ease !important;
+                       box-shadow 0.5s ease,
+                       opacity 0.5s ease !important;
+        }
+        
+        /* Theme toggle indicator */
+        #theme-indicator {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-left: 10px;
+            font-weight: 500;
+            transition: color 0.3s ease;
         }
     `;
     document.head.appendChild(animationStyles);
@@ -734,9 +930,20 @@ document.addEventListener('DOMContentLoaded', function() {
         // Ctrl/Cmd + T to toggle theme
         if ((e.ctrlKey || e.metaKey) && e.key === 't') {
             e.preventDefault();
+            const themeToggle = document.getElementById('theme-toggle');
             if (themeToggle) {
-                themeToggle.checked = !themeToggle.checked;
-                themeToggle.dispatchEvent(new Event('change'));
+                const currentTheme = localStorage.getItem('portfolio-theme') || 'system';
+                let nextTheme;
+                
+                if (currentTheme === 'system') {
+                    nextTheme = themeToggle.checked ? 'light' : 'dark';
+                } else if (currentTheme === 'light') {
+                    nextTheme = 'dark';
+                } else {
+                    nextTheme = 'system';
+                }
+                
+                themeManager.setTheme(nextTheme);
             }
         }
         
@@ -750,7 +957,12 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize with a welcome message
     setTimeout(() => {
-        showNotification('Welcome to my portfolio! Explore my work and skills.', 'info');
+        const currentTheme = localStorage.getItem('portfolio-theme');
+        let message = 'Welcome to my portfolio! Explore my work and skills.';
+        if (currentTheme === 'system') {
+            message += ' (Theme: Auto)';
+        }
+        showNotification(message, 'info');
     }, 1000);
     
     // Add viewport detection for better mobile experience
@@ -775,5 +987,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 this.style.transition = 'opacity 0.5s ease';
             });
         }
+    });
+    
+    // Add theme change listener for other components
+    document.addEventListener('themeChanged', function(e) {
+        // You can add additional theme-dependent updates here
+        console.log('Theme changed to:', e.detail);
     });
 });
