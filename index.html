@@ -2,12 +2,75 @@
 <html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Jerry Myron | Full-Stack Developer</title>
     <link rel="stylesheet" href="portfolio.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Source+Code+Pro:wght@300;400;500&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💼</text></svg>">
+    <style>
+        /* Mobile responsive fixes */
+        @media (max-width: 768px) {
+            .hero-title .title-line {
+                display: block;
+                font-size: 2rem !important;
+            }
+            
+            .hero-title .highlight {
+                font-size: 1.5rem !important;
+                margin-top: 5px;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem !important;
+                line-height: 1.6 !important;
+                padding: 0 10px !important;
+            }
+            
+            .hero-buttons {
+                flex-direction: column !important;
+                gap: 15px !important;
+            }
+            
+            .btn {
+                width: 100% !important;
+                justify-content: center !important;
+            }
+            
+            .hero-stats {
+                flex-direction: column !important;
+                gap: 20px !important;
+            }
+            
+            .stat {
+                padding: 20px !important;
+            }
+            
+            /* About section fixes */
+            .about-content {
+                flex-direction: column !important;
+                gap: 30px !important;
+            }
+            
+            .about-card, .detail-card {
+                width: 100% !important;
+            }
+            
+            /* Certifications section fix */
+            .certifications-content {
+                padding: 20px !important;
+            }
+            
+            .certifications-upload ul {
+                padding-left: 20px !important;
+            }
+            
+            .certifications-upload li {
+                margin-bottom: 10px !important;
+                font-size: 0.95rem !important;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Background Elements -->
@@ -57,13 +120,13 @@
 
     <!-- Main Content -->
     <main>
-        <!-- Hero Section -->
+        <!-- Hero Section - Updated for mobile -->
         <section id="home" class="hero">
             <div class="container">
                 <div class="hero-content">
                     <div class="hero-text">
                         <div class="hero-badge">
-                            <span class="badge-text"> </span>
+                            <span class="badge-text">Building practical solutions with clean, maintainable code</span>
                         </div>
                         <h1 class="hero-title">
                             <span class="title-line">Jerry Myron</span>
@@ -101,7 +164,6 @@
                     
                     <div class="hero-image">
                         <div class="image-container">
-                            
                             <!-- Insert your picture here -->
                             <div class="profile-image-wrapper">
                                 <img src="image/WhatsApp Image 2025-12-06 at 2.47.24 PM.jpeg" 
@@ -110,7 +172,6 @@
                                      id="profile-pic">
                                 <div class="image-overlay"></div>
                             </div>
-
                             
                             <div class="tech-badges">
                                 <div class="tech-badge" data-tooltip="HTML5">
@@ -128,6 +189,72 @@
                                 <div class="tech-badge" data-tooltip="PostgreSQL">
                                     <i class="fas fa-database"></i>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Links & Services Section - ADD THIS NEW SECTION -->
+        <section class="quick-info">
+            <div class="container">
+                <div class="quick-info-grid">
+                    <!-- Quick Links -->
+                    <div class="info-card card">
+                        <h3><i class="fas fa-link"></i> Quick Links</h3>
+                        <div class="quick-links">
+                            <a href="#home" class="quick-link">Home</a>
+                            <a href="#about" class="quick-link">About</a>
+                            <a href="#skills" class="quick-link">Skills</a>
+                            <a href="#projects" class="quick-link">Projects</a>
+                            <a href="#certifications" class="quick-link">Certifications</a>
+                            <a href="#contact" class="quick-link">Contact</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Services -->
+                    <div class="info-card card">
+                        <h3><i class="fas fa-concierge-bell"></i> Services</h3>
+                        <div class="services-list">
+                            <div class="service-item">
+                                <i class="fas fa-code"></i>
+                                <span>Web Development</span>
+                            </div>
+                            <div class="service-item">
+                                <i class="fas fa-server"></i>
+                                <span>Backend Development</span>
+                            </div>
+                            <div class="service-item">
+                                <i class="fas fa-database"></i>
+                                <span>Database Design</span>
+                            </div>
+                            <div class="service-item">
+                                <i class="fab fa-java"></i>
+                                <span>Java Applications</span>
+                            </div>
+                            <div class="service-item">
+                                <i class="fas fa-laptop"></i>
+                                <span>Software Setup</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Contact Info -->
+                    <div class="info-card card">
+                        <h3><i class="fas fa-address-card"></i> Contact Info</h3>
+                        <div class="contact-details">
+                            <div class="contact-detail">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Accra, Ghana</span>
+                            </div>
+                            <div class="contact-detail">
+                                <i class="fas fa-phone"></i>
+                                <span>+233 59 844 6269</span>
+                            </div>
+                            <div class="contact-detail">
+                                <i class="fas fa-envelope"></i>
+                                <span>jerrymyron24@gmail.com</span>
                             </div>
                         </div>
                     </div>
@@ -199,13 +326,13 @@
                                         <p>Advanced concepts & technical interviews</p>
                                     </div>
                                 </div>
-<div class="focus-item">
+                                <div class="focus-item">
                                     <i class="fas fa-server"></i>
                                     <div>
                                         <h4>Frontend Systems</h4>
                                         <p>Responsive design & optimization</p>
                                     </div>
-                                
+                                </div>
                                 <div class="focus-item">
                                     <i class="fas fa-server"></i>
                                     <div>
@@ -490,36 +617,63 @@
                     <p class="section-subtitle">Professional credentials and achievements</p>
                 </div>
                 
-
-
-
                 <div class="certifications-content">
                     <div class="certifications-upload card">
-                        <h3> Certifications</h3>
-                        <p>Professional certificatify courses at UPSA.</p>
-                         <ul>
-                                
-                                <li>Programming Fundamentals ( C++ ).</li>
-                                <li>Computer Application in Business.</li>
-                                 <li>Web Development I (HTML5, CSS3, JavaScript).</li>
-                                <li>Information Systems.</li>
-                                 <li>Data Communication and Computer Networking.</li>
-                                <li>Web Development II (Severs, PHP, JavaScript).</li>
-                                 <li>Database Management Systems (PostgreSQL and SQL).</li>
-                                <li>Programming (Java).</li>
-                                 <li>Information Security Systems.</li>
-                                <li>Electronic Business.</li>
-                                 <li>Computer Hardware Systems.</li>
-                                <li>Research Methodology in IT.</li>
-                            </ul>
-                           
-
-
-
+                        <h3><i class="fas fa-certificate"></i> UPSA Certifications</h3>
+                        <p>Professional certification courses completed at UPSA:</p>
+                        <div class="certifications-grid">
+                            <div class="certification-category">
+                                <h4><i class="fas fa-code"></i> Programming</h4>
+                                <ul>
+                                    <li>Programming Fundamentals (C++)</li>
+                                    <li>Programming (Java)</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="certification-category">
+                                <h4><i class="fas fa-globe"></i> Web Development</h4>
+                                <ul>
+                                    <li>Web Development I (HTML5, CSS3, JavaScript)</li>
+                                    <li>Web Development II (Servers, PHP, JavaScript)</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="certification-category">
+                                <h4><i class="fas fa-database"></i> Database Systems</h4>
+                                <ul>
+                                    <li>Database Management Systems (PostgreSQL and SQL)</li>
+                                    <li>Information Systems</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="certification-category">
+                                <h4><i class="fas fa-shield-alt"></i> Security & Networks</h4>
+                                <ul>
+                                    <li>Information Security Systems</li>
+                                    <li>Data Communication and Computer Networking</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="certification-category">
+                                <h4><i class="fas fa-business-time"></i> Business & Research</h4>
+                                <ul>
+                                    <li>Computer Application in Business</li>
+                                    <li>Electronic Business</li>
+                                    <li>Research Methodology in IT</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="certification-category">
+                                <h4><i class="fas fa-laptop"></i> Hardware & Systems</h4>
+                                <ul>
+                                    <li>Computer Hardware Systems</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                    
-                  
+                </div>
+            </div>
+        </section>
 
         <!-- Contact Section -->
         <section id="contact" class="contact">
@@ -585,10 +739,10 @@
                                 <a href="https://instagram.com/jerrykaz_" target="_blank" class="social-icon instagram">
                                     <i class="fab fa-instagram"></i>
                                 </a>
-                                <a href="https://linkedin.com" target="_blank" class="social-icon linkedin">
+                                <a href="https://www.linkedin.com/in/jerry-myron-80a65a37a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" class="social-icon linkedin">
                                     <i class="fab fa-linkedin"></i>
                                 </a>
-                                <a href="https://github.com" target="_blank" class="social-icon github">
+                                <a href="https://github.com/JerryKaz" target="_blank" class="social-icon github">
                                     <i class="fab fa-github"></i>
                                 </a>
                                 <a href="mailto:jerrymyron24@gmail.com" class="social-icon email">
@@ -649,7 +803,7 @@
                         <a href="https://instagram.com/jerrykaz_" target="_blank" class="social-link">
                             <i class="fab fa-instagram"></i>
                         </a>
-                        <a href="https://www.linkedin.com/in/jerry-myron-80a65a37a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app " target="_blank" class="social-link">
+                        <a href="https://www.linkedin.com/in/jerry-myron-80a65a37a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" class="social-link">
                             <i class="fab fa-linkedin"></i>
                         </a>
                         <a href="https://github.com/JerryKaz" target="_blank" class="social-link">
